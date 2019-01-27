@@ -1,0 +1,89 @@
+" Be vim
+set nocp
+" Proper backspace
+set bs=indent,eol,start
+" I don't want no tabs
+set expandtab
+" Search in all subdirectories
+set path+=**
+" Completion
+set wildmode=list:longest
+
+" Remember marks in 1000 last files, remember up to 1000 lines per register,
+" remember buffer list
+set viminfo='1000,<1000,%,n"/elixir-vim/.vim/viminfo"
+
+" Permanent undo
+set undofile
+let &undodir="/elixir-vim/.vim/undo/"
+set undolevels=5000
+
+" Parens matching
+set showmatch  " jump to matching paren
+set matchtime=1 " ...but very fast
+let loaded_matchparen=1  " ...and do no highlights
+
+" Search
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" Folding
+set foldmethod=syntax
+
+" Do not resize my windows
+set noequalalways
+" Use hidden buffers liberally
+set hidden
+" Use buffers open in other windows and tabs
+set switchbuf=usetab,split
+
+" Decorations
+set modeline
+set relativenumber
+set number
+set ruler
+set laststatus=2
+set showcmd
+
+" tagbar
+nmap <F10> :TagbarToggle<CR>
+
+let g:tagbar_type_elixir = {
+      \ 'ctagstype' : 'elixir',
+      \ 'kinds' : [
+      \ 'f:functions',
+      \ 'functions:functions',
+      \ 'c:callbacks',
+      \ 'd:delegates',
+      \ 'e:exceptions',
+      \ 'i:implementations',
+      \ 'a:macros',
+      \ 'o:operators',
+      \ 'm:modules',
+      \ 'p:protocols',
+      \ 'r:records',
+      \ 't:tests'
+      \ ]
+      \ }
+
+" ALE
+let g:ale_elixir_elixir_ls_release = $HOME . "/.elixir-ls"
+
+" Local additions
+let s:localrc = "/elixir-vim/.vim/localrc"
+if filereadable(s:localrc)
+  exec 'source ' . s:localrc
+endif
+
+syntax on
+filetype plugin on
+filetype indent on
+set encoding=utf-8
+set fileencoding=utf-8
+
+silent! helptags ALL
+silent! helptags ALL
+
+" vim:sw=2:sts=2
