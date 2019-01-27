@@ -48,7 +48,7 @@ RUN cd ale.git && git archive master | tar -x -C /tmp/plugins/pack/addons/start/
 FROM elixir:1.8.0-alpine AS elixir-vim
 ARG USERNAME
 
-RUN apk update && apk upgrade && apk add tmux vim git git-subtree ctags python && rm /var/cache/apk/*
+RUN apk update && apk upgrade && apk add tmux vim git git-subtree ctags python3 && rm /var/cache/apk/*
 
 RUN adduser -D ${USERNAME}
 
