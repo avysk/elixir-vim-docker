@@ -70,11 +70,6 @@ COPY files/ctags .ctags
 
 RUN mkdir -p .vim
 COPY --from=builder /tmp/plugins .vim/
-#RUN git clone https://github.com/majutsushi/tagbar.git .vim/pack/addons/start/tagbar
-#RUN git clone https://github.com/elixir-editors/vim-elixir.git .vim/pack/addons/start/elixir
-#RUN git clone https://github.com/mattreduce/vim-mix .vim/pack/addons/start/mix
-#RUN git clone https://github.com/slashmili/alchemist.vim.git .vim/pack/addons/start/alchemist
-#RUN git clone https://github.com/w0rp/ale.git .vim/pack/addons/start/ale
 
 COPY --from=builder /tmp/release .
 
