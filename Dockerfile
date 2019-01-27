@@ -14,7 +14,7 @@ RUN mix local.rebar --force
 RUN mix deps.get
 RUN mix deps.compile
 RUN mix compile
-RUN mix elixir_ls.release -o /tmp/release/elixir-ls
+RUN mix elixir_ls.release -o /tmp/release/.elixir-ls
 
 ### Gather vim plugins
 RUN mkdir -p /tmp/plugins/pack/addons/start
@@ -48,7 +48,7 @@ RUN cd ale.git && git archive master | tar -x -C /tmp/plugins/pack/addons/start/
 FROM elixir:1.8.0-alpine AS elixir-vim
 ARG USERNAME
 
-RUN apk update && apk upgrade && apk add tmux vim git git-subtree ctags python3 && rm /var/cache/apk/*
+RUN apk update && apk upgrade && apk add tmux vim git git-subtree ctags python && rm /var/cache/apk/*
 
 RUN adduser -D ${USERNAME}
 
@@ -60,8 +60,6 @@ RUN chmod +x /etc/elixir-vim/startup.sh
 RUN mkdir /elixir-vim
 RUN touch /elixir-vim/not-configured
 RUN chown -R ${USERNAME}.${USERNAME} /elixir-vim
-
-
 
 WORKDIR /home/${USERNAME}
 
